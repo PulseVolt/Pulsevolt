@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse Volt | Group 10119</title>
+
+<style>
+/* ===== GLOBAL ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Deep purple/indigo gradient matching the poster */
+    background: linear-gradient(135deg, #1f1147 0%, #0d0621 100%);
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Subtle grid texture */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(31, 17, 71, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid #00e5ff;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+nav .logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+}
+
+/* Heartbeat pulse accent */
+nav .logo span {
+    color: #00e5ff;
+    margin: 0 5px;
+    font-weight: 300;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+nav ul li a:hover {
+    color: #00e5ff;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Diagonal cyan accent like the poster design */
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 400px;
+    height: 80px;
+    background: #00e5ff;
+    transform: rotate(-45deg);
+    opacity: 0.8;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    margin: 0;
+    letter-spacing: 3px;
+    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.hero h1 span {
+    color: #00e5ff;
+}
+
+.hero p.subtitle {
+    font-size: 1.4rem;
+    max-width: 600px;
+    margin: 10px auto 30px;
+    color: #c4b5fd;
+}
+
+.hero .highlight {
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid #00e5ff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    color: #00e5ff;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+/* ===== SECTIONS ===== */
+section {
+    padding: 100px 10%;
+}
+
+section h2 {
+    font-size: 2.8rem;
+    border-bottom: 4px solid #00e5ff;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+    color: #ffffff;
+}
+
+section p {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+}
+
+/* CARDS */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 4px solid #00e5ff;
+    padding: 35px;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.15);
+}
+
+.card h3 {
+    color: #00e5ff;
+    margin-top: 0;
+    font-size: 1.6rem;
+}
+
+ul.tech-specs {
+    list-style: none;
+    padding: 0;
+}
+
+ul.tech-specs li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    position: relative;
+    padding-left: 25px;
+}
+
+ul.tech-specs li::before {
+    content: "►";
+    color: #00e5ff;
+    position: absolute;
+    left: 0;
+    font-size: 0.9rem;
+    top: 2px;
+}
+
+/* ===== TEAM ===== */
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.member {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 220px;
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    transition: border-color 0.3s;
+}
+
+.member:hover {
+    border-color: #00e5ff;
+}
+
+.member .photo {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #00e5ff, #0077ff);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+.member h4 {
+    margin: 0 0 5px;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.member p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #00e5ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #080314;
+    text-align: center;
+    padding: 30px;
+    border-top: 3px solid #00e5ff;
+    color: #64748b;
+}
+
+footer span {
+    color: #00e5ff;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><img src="/Users/Administrator/Downloads/1x/Asset 4.png" alt=""></div>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#prototype">Prototype</a></li>
+        <li><a href="#team">Team</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <h1>Pulse<span>Volt</span></h1>
+    <p class="subtitle">Group 10119 | STEM High School for Boys, 6th of October</p>
+    <div class="highlight">Empowering Hospitals with Sustainable Urban Wind Energy</div>
+</div>
+
+<section id="about">
+    <h2>Project Overview</h2>
+    <p>Pulse Volt addresses Egypt's Grand Challenges by introducing a highly efficient approach to renewable energy in urban environments. We utilize a Lenz2 vertical axis wind turbine equipped with a Convergent Omnidirectional Nozzle Guide (CONG) to efficiently generate sustainable electricity. Our mission is to alleviate the stress on national power grids and provide an uninterrupted, clean power supply to critical facilities.</p>
+</section>
+
+<section id="problem">
+    <h2>The Problem</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>Power Instability in Hospitals</h3>
+            <p>Aging city grids and frequent municipal power load-shedding pose direct threats to high-risk demographics, such as intensive care patients and neonatal infants. Sudden outages turn a hospital's reliance on power into a matter of life or death.</p>
+        </div>
+        <div class="card">
+            <h3>Climate Change & Emissions</h3>
+            <p>Relying heavily on backup diesel generators during power failures is costly and results in the emission of harmful fumes. The burning of fossil fuels for conventional electricity continues to drive climate change and ecosystem degradation in Egypt.</p>
+        </div>
+    </div>
+</section>
+
+<section id="solution">
+    <h2>Our Solution</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>Lenz2 Wind Turbine</h3>
+            <p>We selected the Lenz2 geometry for its high torque capabilities and its ability to accept wind from any direction, making it highly effective even amidst chaotic urban wind flows.</p>
+        </div>
+        <div class="card">
+            <h3>CONG Technology</h3>
+            <p>The addition of the Convergent Omnidirectional Nozzle Guide (CONG) forces incoming air to pull faster through the turbine blades, overcoming low-speed wind barriers and maximizing electrical output.</p>
+        </div>
+        <div class="card">
+            <h3>Urban Feasibility & Storage</h3>
+            <p>The compact footprint makes this ideal for rooftop installations. Coupled with a reliable battery storage system, Pulse Volt ensures power can be safely stored and delivered when emergency load-shedding occurs.</p>
+        </div>
+    </div>
+</section>
+
+<section id="prototype">
+    <h2>Prototype Specifications</h2>
+    <div class="card">
+        <ul class="tech-specs">
+            <li><strong>Scale & Dimensions:</strong> 1:1 scale application engineered to stay strictly within a 0.25 m³ volume. The turbine features a height of 1.0 m and a total diameter of 0.45 m.</li>
+            <li><strong>Advanced Aerodynamics:</strong> The blades incorporate a 60-degree helical twist along the vertical axis to eliminate "dead spots" and ensure constant torque.</li>
+            <li><strong>Premium Materials:</strong> Constructed using 0.5 mm lightweight aluminum sheets for high strength-to-weight ratio, integrated with laser-cut MDF structural ribs.</li>
+            <li><strong>Power Electronics:</strong> Equipped with a JGA25-370 DC gear motor acting as a generator, a 50V 0.0033F electrolytic capacitor for storage, and a 5V USB step-down buck converter to safely regulate final output.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="team">
+    <h2>Meet the Team</h2>
+    <div class="team">
+        <div class="member">
+            <div class="photo"></div>
+            <h4>Ahmed Hany</h4>
+            <p>Researcher</p>
+        </div>
+        <div class="member">
+            <div class="photo"></div>
+            <h4>Haitham Mostafa</h4>
+            <p>Designer</p>
+        </div>
+        <div class="member">
+            <div class="photo"></div>
+            <h4>Karim Hassan</h4>
+            <p>Engineer</p>
+        </div>
+        <div class="member">
+            <div class="photo"></div>
+            <h4>Mahmoud Atef</h4>
+            <p>Analyst</p>
+        </div>
+        <div class="member">
+            <div class="photo"></div>
+            <h4>Youssef Hossam</h4>
+            <p>Leader</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025/2026 <span>Pulse Volt</span> - Group 10119. STEM High School for Boys, 6th of October.</p>
+</footer>
+
+</body>
+</html>
